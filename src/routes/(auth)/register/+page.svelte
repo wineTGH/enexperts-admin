@@ -34,17 +34,17 @@
     </div>
 
     <div class="flex flex-col sm:gap-3 sm:flex-row">
-        <Form.Field {form} name="first_name">
+        <Form.Field {form} name="firstName">
             <Form.Control let:attrs>
                 <Form.Label>First name</Form.Label>
-                <Input placeholder="Your name" type="text" {...attrs} bind:value={$formData.first_name} />
+                <Input placeholder="Your name" type="text" {...attrs} bind:value={$formData.firstName} />
             </Form.Control>
             <Form.FieldErrors />
         </Form.Field>
-        <Form.Field {form} name="last_name">
+        <Form.Field {form} name="lastName">
             <Form.Control let:attrs>
                 <Form.Label>Last Name</Form.Label>
-                <Input placeholder="Last Name" type="text" {...attrs} bind:value={$formData.last_name} />
+                <Input placeholder="Last Name" type="text" {...attrs} bind:value={$formData.lastName} />
             </Form.Control>
             <Form.FieldErrors />
         </Form.Field>
@@ -58,9 +58,9 @@
         <Form.FieldErrors />
     </Form.Field>
 
-    <Form.Field {form} name="repeat_password">
+    <Form.Field {form} name="repeatPassword">
         <Form.Control let:attrs>
-            <Input placeholder="Repeat password" type="password" {...attrs} bind:value={$formData.repeat_password} />
+            <Input placeholder="Repeat password" type="password" {...attrs} bind:value={$formData.repeatPassword} />
         </Form.Control>
         <Form.FieldErrors />
     </Form.Field>

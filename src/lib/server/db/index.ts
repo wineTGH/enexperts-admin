@@ -1,6 +1,8 @@
 import { drizzle } from "drizzle-orm/node-postgres";
-import { Client } from "pg";
 import { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME } from "$env/static/private";
+import pg from "pg";
+
+const {Client} = pg;
 
 const client = new Client({
   host: DB_HOST,
