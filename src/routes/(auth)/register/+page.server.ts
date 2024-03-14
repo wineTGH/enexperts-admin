@@ -47,10 +47,8 @@ export const actions: Actions = {
             passwordHash: await bcrypt.hash(form.data.password, 10)
         };
 
-        console.log(newUser);
+        await createNewUser(newUser);
 
-        const resp = await createNewUser(newUser);
-        console.log(resp);
         return { form }
     }
 }
