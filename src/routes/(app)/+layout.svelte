@@ -13,4 +13,7 @@
 		<Button href="/signup">Sign Up</Button>
 	</div>	
 </header>
-<slot />
+
+<main class="container">
+	<slot />
+</main>
