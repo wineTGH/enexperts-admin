@@ -8,6 +8,20 @@
       "when": 1710333747571,
       "tag": "0000_initial_migration",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1710427306189,
+      "tag": "0001_previous_thunderbolts",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1710681141585,
+      "tag": "0002_lively_lizard",
+      "breakpoints": true
     }
   ]
 }
