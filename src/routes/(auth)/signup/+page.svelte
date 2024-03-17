@@ -20,14 +20,14 @@
         <Form.Field {form} name="username">
             <Form.Control let:attrs>
                 <Form.Label>Username</Form.Label>
-                <Input placeholder="Username" {...attrs} bind:value={$formData.username} />
+                <Input placeholder="Username" {...attrs} bind:value={$formData.username} required />
             </Form.Control>
             <Form.FieldErrors />
         </Form.Field>
         <Form.Field {form} name="email">
             <Form.Control let:attrs>
                 <Form.Label>Email</Form.Label>
-                <Input placeholder="Email" type="email" {...attrs} bind:value={$formData.email} />
+                <Input placeholder="Email" type="email" {...attrs} bind:value={$formData.email} required />
             </Form.Control>
             <Form.FieldErrors />
         </Form.Field>
@@ -37,14 +37,14 @@
         <Form.Field {form} name="firstName">
             <Form.Control let:attrs>
                 <Form.Label>First name</Form.Label>
-                <Input placeholder="Your name" type="text" {...attrs} bind:value={$formData.firstName} />
+                <Input placeholder="Your name" type="text" {...attrs} bind:value={$formData.firstName} required />
             </Form.Control>
             <Form.FieldErrors />
         </Form.Field>
         <Form.Field {form} name="lastName">
             <Form.Control let:attrs>
                 <Form.Label>Last Name</Form.Label>
-                <Input placeholder="Last Name" type="text" {...attrs} bind:value={$formData.lastName} />
+                <Input placeholder="Last Name" type="text" {...attrs} bind:value={$formData.lastName} required />
             </Form.Control>
             <Form.FieldErrors />
         </Form.Field>
@@ -53,14 +53,14 @@
     <Form.Field {form} name="password">
         <Form.Control let:attrs>
             <Form.Label>Password</Form.Label>
-            <Input placeholder="Password" type="password" {...attrs} bind:value={$formData.password} />
+            <Input placeholder="Password" type="password" {...attrs} bind:value={$formData.password} required />
         </Form.Control>
         <Form.FieldErrors />
     </Form.Field>
 
     <Form.Field {form} name="repeatPassword">
         <Form.Control let:attrs>
-            <Input placeholder="Repeat password" type="password" {...attrs} bind:value={$formData.repeatPassword} />
+            <Input placeholder="Repeat password" type="password" {...attrs} bind:value={$formData.repeatPassword} required />
         </Form.Control>
         <Form.FieldErrors />
     </Form.Field>

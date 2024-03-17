@@ -1,11 +1,34 @@
 import { superValidate } from "sveltekit-superforms";
 import { zod } from "sveltekit-superforms/adapters";
 import { registerSchema } from "./schema";
-import { fail } from "@sveltejs/kit";
+import { fail, redirect } from "@sveltejs/kit";
 import type { Actions, PageServerLoad } from "./$types";
 import { createNewUser, isUserExists } from "$lib/server/users.js";
 import type { NewUser } from "$lib/server/db/types";
 import bcrypt from "bcrypt";
+import { createTokens } from "$lib/server/tokens";
+import { dev } from "$app/environment";
+
+const serverRegisterSchema = registerSchema.superRefine(async ({username, email}, ctx) => {
+    const {exists, user} = await isUserExists(username, email);
+    if (!exists) { return true }
+
+    if (user?.email === email) {
+        ctx.addIssue({
+            code: "custom",
+            path: ["email"],
+            message: "Email already in use"
+        })
+    }
+    if (user?.username === username) {
+        ctx.addIssue({
+            code: "custom",
+            path: ["username"],
+            message: "Username already in use"
+        })
+    }
+})
+
 
 export const load: PageServerLoad = async () => {
     return {
@@ -15,27 +38,7 @@ export const load: PageServerLoad = async () => {
 
 export const actions: Actions = {
     default: async (event) => {
-        const schema = registerSchema.superRefine(async ({username, email}, ctx) => {
-            const {exists, user} = await isUserExists(username, email);
-            if (!exists) { return true }
-
-            if (user?.email === email) {
-                ctx.addIssue({
-                    code: "custom",
-                    path: ["email"],
-                    message: "Email already in use"
-                })
-            }
-            if (user?.username === username) {
-                ctx.addIssue({
-                    code: "custom",
-                    path: ["username"],
-                    message: "Username already in use"
-                })
-            }
-        })
-
-        const form = await superValidate(event, zod(schema));
+        const form = await superValidate(event, zod(serverRegisterSchema));
 
         if (!form.valid) { return fail(400, {form}) }
 
@@ -49,6 +52,6 @@ export const actions: Actions = {
 
         await createNewUser(newUser);
 
-        return { form }
+        redirect(303, '/signin');
     }
 }
