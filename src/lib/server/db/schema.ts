@@ -13,12 +13,10 @@ export const users = pgTable("users", {
     passwordHash: text('password_hash').notNull()
 });
 
-export const tokensPairs = pgTable("tokens_pairs", {
+export const refreshTokens = pgTable("refresh_tokens", {
     id: serial('id').primaryKey(),
-    accessToken: text('access_token').notNull().unique(),
     refreshToken: text('refresh_token').notNull().unique(),
-    refreshCreateDate: timestamp('refresh_create_date', {mode: "date"}).notNull().defaultNow(),
-    accessCreateDate: timestamp('access_create_date', {mode: "date"}).notNull().defaultNow(),
+    creationDate: timestamp('creation_date', {mode: "date"}).notNull().defaultNow(),
     used: boolean('used').default(false),
-    user_id: integer('user_id').references(() => users.id)
+    userId: integer('user_id').references(() => users.id)
 });

@@ -19,14 +19,14 @@
     <Form.Field {form} name="username">
         <Form.Control let:attrs>
             <Form.Label>Username</Form.Label>
-            <Input placeholder="Username" {...attrs} bind:value={$formData.username} />
+            <Input placeholder="Username" {...attrs} bind:value={$formData.username} required/>
         </Form.Control>
         <Form.FieldErrors />
     </Form.Field>
     <Form.Field {form} name="password">
         <Form.Control let:attrs>
             <Form.Label>Password</Form.Label>
-            <Input placeholder="Password" type="password" {...attrs} bind:value={$formData.password} />
+            <Input placeholder="Password" type="password" {...attrs} bind:value={$formData.password} required />
         </Form.Control>
         <Form.FieldErrors />
     </Form.Field>
