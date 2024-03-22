@@ -1,7 +1,7 @@
-import { tokensPairs, users } from "./schema";
+import type { sessionsTable, usersTable } from "./schema";
 
-export type User = typeof users.$inferSelect;
-export type NewUser = typeof users.$inferInsert;
+export type User = typeof usersTable.$inferSelect;
+export type NewUser = typeof usersTable.$inferInsert;
 
-export type TokensPairs = typeof tokensPairs.$inferSelect;
-export type NewTokensPairs = typeof tokensPairs.$inferInsert;
+export type Session = typeof sessionsTable.$inferSelect;
+export type NewSession = typeof sessionsTable.$inferInsert;
