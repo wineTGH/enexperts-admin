@@ -7,5 +7,7 @@
         Welcome {data.user?.firstName || ""} to the "enexperts"<br />
         dashboard page
     </h1>
-    <p class="max-w-[750px] text-center text-lg sm:text-xl text-balance text-muted-foreground">Please Log In or make new account</p>
+    {#if !data.user}
+        <p class="max-w-[750px] text-center text-lg sm:text-xl text-balance text-muted-foreground">Please Log In or make new account</p>
+    {/if}
 </section>
