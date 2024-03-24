@@ -17,7 +17,7 @@
   const { form: formData, enhance } = form;
 </script>
 
-<main class="flex flex-col lg:grid lg:grid-cols-2 lg:grid-rows-3 h-screen">
+<main class="grid place-items-center lg:place-items-stretch lg:grid-cols-2 lg:grid-rows-3 h-screen">
     
     <section class="row-span-3 bg-gradient-to-t from-black to-transparent hidden lg:block">
         <p class="absolute text-white text-lg bottom-0 m-3">
@@ -40,7 +40,7 @@
             <p class="text-muted-foreground">Select a login method on a tab panel</p>
         </header>
 
-        <Tabs.Root value="username" class="w-full p-6 md:px-24 lg:p-0 lg:w-96">
+        <Tabs.Root value="username" class="w-full lg:p-0 lg:w-96">
             <Tabs.List class="grid w-full grid-cols-2">
                 <Tabs.Trigger value="username">Username</Tabs.Trigger>
                 <Tabs.Trigger value="email">Email</Tabs.Trigger>
