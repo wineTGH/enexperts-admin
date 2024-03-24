@@ -1,5 +1,6 @@
 <script>
-	import Button from '$lib/components/ui/button/button.svelte';
+	import UserAvatar from '$lib/components/custom/UserAvatar.svelte';
+import Button from '$lib/components/ui/button/button.svelte';
 	export let data;
 </script>
 
@@ -13,9 +14,7 @@
 				<a href="/signin" class="transition-colors hover:text-foreground/80 text-foreground">Sign In</a>
 				<Button href="/signup">Sign Up</Button>
 			{:else}
-				<form method="post" action="/signout">
-					<button class="transition-colors hover:text-foreground/80 text-foreground">Sign Out</button>
-				</form>
+				<UserAvatar user={data.user}/>
 			{/if}
 		</div>
 	</header>
