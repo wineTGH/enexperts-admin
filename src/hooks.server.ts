@@ -1,5 +1,5 @@
 import { lucia } from "$lib/server/auth";
-import { type Handle } from "@sveltejs/kit";
+import { type Handle, error } from "@sveltejs/kit";
 import { sequence } from "@sveltejs/kit/hooks";
 
 export const auth: Handle = async ({event, resolve}) => {
@@ -36,8 +36,14 @@ export const auth: Handle = async ({event, resolve}) => {
 }
 
 export const routes: Handle = async ({event, resolve}) => {
-    //TODO: check if user allowed to visit protected route
-    
+    if (event.route.id?.includes('/(protected)')) {
+        if (!event.locals.user?.role.match('teacher|admin')) {
+            error(403, {
+                message: "You don't have permission to access this page"
+            });
+        }
+    }
+
     return resolve(event);
 }
 
