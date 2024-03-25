@@ -13,7 +13,7 @@ const serverLoginSchema = loginSchema.superRefine(async ({username, password}, c
     if (!exists) {
         ctx.addIssue({
             code: "custom",
-            path: ["username"],
+            path: ["password"],
             message: "Invalid password or username",
         })
     }
