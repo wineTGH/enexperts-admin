@@ -1,9 +1,12 @@
 <script lang="ts">
 	import * as Avatar from '$lib/components/ui/avatar';
     import * as Dropdown from '$lib/components/ui/dropdown-menu';
+    import * as AlertDialog from "$lib/components/ui/alert-dialog";
     import { Button } from '$lib/components/ui/button';
 
     export let user: import("lucia").User;
+
+    let openAlert: boolean = false;
 </script>
 
 <Dropdown.Root>
@@ -27,9 +30,24 @@
             <Dropdown.Item href="/me" class="hover:cursor-pointer">
                 Settings
             </Dropdown.Item>
-            <Dropdown.Item href="/signout" class="hover:cursor-pointer text-red-500">
-                Sign Out
-            </Dropdown.Item>
+                <Dropdown.Item on:click={() => {openAlert = true}} class="hover:cursor-pointer text-red-500">
+                    Sign Out
+                </Dropdown.Item>
         </Dropdown.Group>
     </Dropdown.Content>
 </Dropdown.Root>
+
+<AlertDialog.Root bind:open={openAlert}>
+    <AlertDialog.Content>
+        <AlertDialog.Header>
+            <AlertDialog.Title>Are you sure?</AlertDialog.Title>
+        </AlertDialog.Header>
+        <AlertDialog.Footer>
+            <AlertDialog.Cancel>Cancel</AlertDialog.Cancel>
+            <form action="/signout" method="post">
+                <Button type="submit" variant="destructive">Sign Out</Button>
+            </form>
+            <!-- <a href="/signout">Sign Out</a> -->
+        </AlertDialog.Footer>
+    </AlertDialog.Content>
+</AlertDialog.Root>

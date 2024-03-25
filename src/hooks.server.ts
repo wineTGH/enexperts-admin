@@ -36,8 +36,8 @@ export const auth: Handle = async ({event, resolve}) => {
 }
 
 export const routes: Handle = async ({event, resolve}) => {
-    if (event.route.id?.includes('/(protected)')) {
-        if (!event.locals.user?.role.match('teacher|admin')) {
+    if (event.route.id?.includes('(protected)')) {
+        if (!event.locals.user?.role.match('admin')) {
             error(403, {
                 message: "You don't have permission to access this page"
             });
