@@ -9,14 +9,14 @@ import Button from '$lib/components/ui/button/button.svelte';
 		<nav class="flex text-center items-center gap-4">
 			<a href="/dashboard" class="transition-colors hover:text-foreground/80 text-foreground">Dashboard</a>
 		</nav>
-		<div class="flex gap-3 items-center text-center">
-			{#if !data.user}
+		{#if !data.user}
+			<div class="flex gap-3 items-center text-center">
 				<a href="/signin" class="transition-colors hover:text-foreground/80 text-foreground">Sign In</a>
 				<Button href="/signup">Sign Up</Button>
-			{:else}
-				<UserAvatar user={data.user}/>
-			{/if}
-		</div>
+			</div>
+		{:else}
+			<UserAvatar user={data.user}/>
+		{/if}
 	</header>
 	
 	<main class="container">

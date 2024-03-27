@@ -27,7 +27,7 @@
         </Dropdown.Label>
         <Dropdown.Separator />
         <Dropdown.Group>
-            <Dropdown.Item href="/me" class="hover:cursor-pointer">
+            <Dropdown.Item href="/settings" class="hover:cursor-pointer">
                 Settings
             </Dropdown.Item>
                 <Dropdown.Item on:click={() => {openAlert = true}} class="hover:cursor-pointer text-red-500">
@@ -47,7 +47,6 @@
             <form action="/signout" method="post">
                 <Button type="submit" variant="destructive">Sign Out</Button>
             </form>
-            <!-- <a href="/signout">Sign Out</a> -->
         </AlertDialog.Footer>
     </AlertDialog.Content>
 </AlertDialog.Root>
