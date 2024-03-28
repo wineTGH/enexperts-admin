@@ -1,6 +1,6 @@
 <script lang="ts">
-    import NavLink from "$lib/components/custom/NavLink.svelte";
-import UserAvatar from "$lib/components/custom/UserAvatar.svelte";
+    import NavLink from "$lib/components/custom/nav-link.svelte";
+import UserAvatar from "$lib/components/custom/user-avatar.svelte";
     export let data;
 </script>
 

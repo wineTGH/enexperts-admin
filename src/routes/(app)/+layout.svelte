@@ -1,5 +1,5 @@
 <script>
-	import UserAvatar from '$lib/components/custom/UserAvatar.svelte';
+	import UserAvatar from '$lib/components/custom/user-avatar.svelte';
 import Button from '$lib/components/ui/button/button.svelte';
 	export let data;
 </script>
