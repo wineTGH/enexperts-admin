@@ -46,11 +46,12 @@
   },
   "type": "module",
   "dependencies": {
+    "@internationalized/date": "^3.5.2",
     "@lucia-auth/adapter-drizzle": "^1.0.7",
     "@sveltejs/enhanced-img": "^0.1.9",
     "@types/jsonwebtoken": "^9.0.6",
     "bcrypt": "^5.1.1",
-    "bits-ui": "^0.20.0",
+    "bits-ui": "^0.21.1",
     "chart.js": "^4.4.2",
     "clsx": "^2.1.0",
     "drizzle-orm": "^0.30.1",
