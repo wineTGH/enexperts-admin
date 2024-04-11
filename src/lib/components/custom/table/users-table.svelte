@@ -4,8 +4,7 @@
 	import { readable, type Readable } from 'svelte/store';
     import UsersTableActions from "$lib/components/custom/table/users-table-actions.svelte";
 
-    type TestUsers = {id: number; username: string; email: string;}
-    export let users: Readable<TestUsers[]> = readable<TestUsers[]>([]);
+    export let users: Readable<import("lucia").User[]> = readable<import("lucia").User[]>([]);
 
 	const table = createTable(users);
 

@@ -25,9 +25,10 @@ import Button from '$lib/components/ui/button/button.svelte';
 	
 	
 	<footer class="flex justify-between items-baseline p-3 mt-auto border-t">
-		<p>© Anatoly "wineT" Bogomolov</p>
+		<p class="font-bold">By Anatoly "wineT" Bogomolov</p>
 		<nav class="flex gap-4">
-			<a class="transition-colors text-foreground hover:text-foreground/80 hover:underline" href="https://mastodon.ml/@winet">Mastodon</a>
+			<a rel="me" class="transition-colors text-foreground hover:text-foreground/80 hover:underline" href="https://mastodon.ml/@winet">Mastodon (RU)</a>
+			<a rel="me" class="transition-colors text-foreground hover:text-foreground/80 hover:underline" href="https://mstdn.social/@winet">Mastodon (EN)</a>
 			<a class="transition-colors text-foreground hover:text-foreground/80 hover:underline" href="https://t.me/AnatolyFL">Telegram</a>
 			<a class="transition-colors text-foreground hover:text-foreground/80 hover:underline" href="/about">About</a>
 			<a class="transition-colors text-foreground hover:text-foreground/80 hover:underline" href="/legal">Legal</a>

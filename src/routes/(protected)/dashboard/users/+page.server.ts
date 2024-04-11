@@ -1,5 +1,7 @@
+import { getSavedUsers } from '$lib/server/users';
 import type { PageServerLoad } from './$types';
 
 export const load = (async () => {
-    return {};
+    const users = await getSavedUsers();
+    return {users};
 }) satisfies PageServerLoad;

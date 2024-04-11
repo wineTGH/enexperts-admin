@@ -3,7 +3,7 @@
     import * as DropdownMenu from "$lib/components/ui/dropdown-menu";
     import { Button } from "$lib/components/ui/button";
    
-    export let id: number;
+    export let id: string;
 </script>
    
   <DropdownMenu.Root>
@@ -21,12 +21,14 @@
     <DropdownMenu.Content>
       <DropdownMenu.Group>
         <DropdownMenu.Label>Actions</DropdownMenu.Label>
-        <DropdownMenu.Item on:click={() => navigator.clipboard.writeText(id.toString())}>
+        <DropdownMenu.Item on:click={() => navigator.clipboard.writeText(id)}>
           Copy user's ID
         </DropdownMenu.Item>
       </DropdownMenu.Group>
       <DropdownMenu.Separator />
-      <DropdownMenu.Item>View user</DropdownMenu.Item>
+      <DropdownMenu.Item href={`/dashboard/users/${id}`} class="hover:cursor-pointer">
+        View user
+      </DropdownMenu.Item>
     </DropdownMenu.Content>
   </DropdownMenu.Root>
   

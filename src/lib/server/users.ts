@@ -22,7 +22,7 @@ export async function createNewUser(user: NewUser): Promise<User> {
     return (await db.insert(usersTable).values(user).returning())[0];
 }
 
-export async function getSavedUsers(page: number, limit: number = 15): Promise<import("lucia").User[]> {
+export async function getSavedUsers(page: number = 0, limit: number = 15): Promise<import("lucia").User[]> {
     return await db.select({
         id: usersTable.id,
         username: usersTable.username,
@@ -36,7 +36,7 @@ export async function getSavedUsers(page: number, limit: number = 15): Promise<i
     .offset(limit * page);
 }
 
-export async function getSavedUser(id: string): Promise<import("lucia").User | null> {
+export async function getSavedUser(id: string = "", username: string = "", email: string = ""): Promise<import("lucia").User | null> {
     const user = (await db.select({
         id: usersTable.id,
         username: usersTable.username,
@@ -44,7 +44,19 @@ export async function getSavedUser(id: string): Promise<import("lucia").User | n
         firstName: usersTable.firstName,
         lastName: usersTable.lastName,
         role: usersTable.role
-    }).from(usersTable).where(eq(usersTable.id, id)))[0];
+    })
+    .from(usersTable)
+    .where(
+        or(
+            eq(usersTable.username, username),
+            eq(usersTable.id, id),
+            eq(usersTable.email, email)
+        )
+    ))[0];
 
     return user || null;
+}
+
+export async function updateUser(user: import("lucia").User) {
+    
 }

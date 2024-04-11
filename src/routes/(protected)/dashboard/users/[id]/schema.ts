@@ -1,11 +1,14 @@
 import { z } from "zod";
 
 export const editUserSchema = z.object({
+    id: z.string(),
     username: z.string().min(2).max(50).regex(/^[a-z0-9_]+$/),
     email: z.string().email(),
     
     firstName: z.string().min(2).max(50),
     lastName: z.string().min(2).max(50),
+
+    role: z.enum(["admin", "teacher", "student"]),
 })
 
 export const changePasswordSchema = z.object({
