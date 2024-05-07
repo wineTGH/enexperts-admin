@@ -1,5 +1,5 @@
 import { lucia } from "$lib/server/auth";
-import { type Handle, error } from "@sveltejs/kit";
+import { type Handle, redirect } from "@sveltejs/kit";
 import { sequence } from "@sveltejs/kit/hooks";
 
 export const auth: Handle = async ({event, resolve}) => {
@@ -38,9 +38,9 @@ export const auth: Handle = async ({event, resolve}) => {
 export const routes: Handle = async ({event, resolve}) => {
     if (event.route.id?.includes('(protected)')) {
         if (!event.locals.user?.role.match('admin')) {
-            error(403, {
-                message: "You don't have permission to access this page"
-            });
+            const fromUrl = event.url.pathname + event.url.search;
+
+            redirect(302, `/signin?from=${fromUrl}`);
         }
     }
 
