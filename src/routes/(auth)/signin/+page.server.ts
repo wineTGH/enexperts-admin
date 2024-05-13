@@ -51,7 +51,7 @@ export const actions: Actions = {
             ...sessionCookie.attributes
         })
 
-        const fromUrl = event.url.searchParams.get('from')?.startsWith('/');
+        const fromUrl = event.url.searchParams.get('from')?.slice(1);
         redirect(302, `/${fromUrl || ''}`);
     }
 }
