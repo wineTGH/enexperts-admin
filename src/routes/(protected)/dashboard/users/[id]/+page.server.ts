@@ -1,4 +1,4 @@
-import { getSavedUser, isUserExists } from "$lib/server/users";
+import { getSavedUser } from "$lib/server/users";
 import { error, fail } from "@sveltejs/kit";
 import type { Actions, PageServerLoad } from "./$types";
 

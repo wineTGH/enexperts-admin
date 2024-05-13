@@ -16,7 +16,6 @@
             </a>
         </p>
         <enhanced:img src={background} class="h-full object-cover relative -z-10" alt="Wooden letters of english alphabet" />
-        <!-- <img src={background} class="h-full object-cover relative -z-10" alt="Wooden letters of english alphabet"/> -->
     </section>
 
     <section class="row-span-3 flex flex-col justify-center items-center gap-6">
