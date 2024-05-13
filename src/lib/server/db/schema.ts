@@ -15,9 +15,20 @@ export const usersTable = pgTable("users", {
 
 export const sessionsTable = pgTable("sessions", {
     id: text('id').primaryKey(),
-    userId : text('user_id').notNull().references(() => usersTable.id),
-    expiresAt : timestamp('expires_at', {
+    userId: text('user_id').notNull().references(() => usersTable.id),
+    expiresAt: timestamp('expires_at', {
         withTimezone: true,
         mode: "date"
     }).notNull()
+});
+
+export const mediaTable = pgTable("media", {
+    id: text('id').primaryKey(),
+    userId: text('user_id').notNull().references(() => usersTable.id),
+    type: text('type').notNull(),
+    path: text('path').notNull(),
+    date: timestamp('uploaded_at', {
+        withTimezone: true,
+        mode: "date"
+    })
 });
