@@ -1,9 +1,19 @@
 <script lang="ts">
 	import Ellipsis from 'lucide-svelte/icons/ellipsis';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
+
 	import { Button } from '$lib/components/ui/button';
+	import { createEventDispatcher } from 'svelte';
   
 	export let id: string;
+
+	const dispatch = createEventDispatcher();
+
+	const openAlert = () => {
+		dispatch('delete', {
+			id: id
+		})
+	}
 </script>
 
 <DropdownMenu.Root>
@@ -22,10 +32,13 @@
 			>
 				Copy user's ID
 			</DropdownMenu.Item>
+			<DropdownMenu.Item href={`/dashboard/users/${id}`} class="hover:cursor-pointer">
+				View user
+			</DropdownMenu.Item>
 		</DropdownMenu.Group>
 		<DropdownMenu.Separator />
-		<DropdownMenu.Item href={`/dashboard/users/${id}`} class="hover:cursor-pointer">
-			View user
+		<DropdownMenu.Item on:click={openAlert} class="hover:cursor-pointer text-red-500">
+			Delete user
 		</DropdownMenu.Item>
 	</DropdownMenu.Content>
 </DropdownMenu.Root>

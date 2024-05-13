@@ -4,8 +4,14 @@
 	import { writable, type Writable } from 'svelte/store';
 	import UsersActionsCell from '$lib/components/custom/table/users-actions-cell.svelte';
 	import UsersInfoCell from './user-info-cell.svelte';
+	import * as AlertDialog from "$lib/components/ui/alert-dialog";
+    import { Button } from '$lib/components/ui/button';
+	import { enhance } from '$app/forms';
 
 	export let users: Writable<import('lucia').User[]> = writable<import('lucia').User[]>([]);
+
+	let openAlert: boolean = false;
+	let userId: string | null = null;
 
 	const table = createTable(users);
 
@@ -31,7 +37,12 @@
 			accessor: ({ id }) => id,
 			header: '',
 			cell: ({ value }) => {
-				return createRender(UsersActionsCell, { id: value });
+				return createRender(UsersActionsCell, { id: value }).on(
+					'delete', (_) => {
+						openAlert = true;
+						userId = value;
+					}
+				);
 			}
 		})
 	]);
@@ -77,3 +88,18 @@
 		</Table.Body>
 	</Table.Root>
 </section>
+
+<AlertDialog.Root bind:open={openAlert}>
+    <AlertDialog.Content>
+        <AlertDialog.Header>
+            <AlertDialog.Title>Are you sure?</AlertDialog.Title>
+        </AlertDialog.Header>
+        <AlertDialog.Footer>
+            <AlertDialog.Cancel>Cancel</AlertDialog.Cancel>
+            <form action="?/deleteUser" method="post" use:enhance>
+                <input type="hidden" name="id" bind:value={userId}>
+				<Button type="submit" variant="destructive">Delete</Button>
+            </form>
+        </AlertDialog.Footer>
+    </AlertDialog.Content>
+</AlertDialog.Root>
