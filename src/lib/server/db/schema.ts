@@ -1,4 +1,4 @@
-import { pgTable, text, pgEnum, timestamp, integer } from "drizzle-orm/pg-core";
+import { pgTable, text, pgEnum, timestamp } from "drizzle-orm/pg-core";
 
 export const usersRoles = ['admin', 'teacher', 'student'] as const;
 
@@ -29,12 +29,6 @@ export const mediaTable = pgTable("media", {
     userId: text('user_id').notNull().references(() => usersTable.id),
     type: text('type').notNull(),
     path: text('path').notNull(),
-    
-    width: integer('width').notNull().default(0),
-    height: integer('height').notNull().default(0),
 
-    date: timestamp('uploaded_at', {
-        withTimezone: true,
-        mode: "date"
-    })
+    uploaded_at: timestamp('uploaded_at', {mode: "date"}).notNull()
 });
