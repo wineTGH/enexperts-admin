@@ -13,7 +13,6 @@
     <Dropdown.Trigger asChild let:builder>
         <Button variant="ghost" builders={[builder]} class="relative h-10 w-10 rounded-full">
             <Avatar.Root class="h-10 w-10">
-                <Avatar.Image src="/missingo" alt={user.username} />
                 <Avatar.Fallback>{user.firstName.toUpperCase()[0] + user.lastName.toUpperCase()[0]}</Avatar.Fallback>
             </Avatar.Root>
         </Button>
