@@ -1,7 +1,6 @@
-import { pgTable, text, pgEnum, timestamp } from "drizzle-orm/pg-core";
+import { pgTable, text, pgEnum, timestamp, integer } from "drizzle-orm/pg-core";
 
-//? Weirdest shit I've ever written in my life. Wtf TypeScript?
-export const usersRoles = ['admin', 'teacher', 'student'] as readonly [string, ...string[]];
+export const usersRoles = ['admin', 'teacher', 'student'] as const;
 
 const usersRolesEnum = pgEnum('roles', usersRoles);
 
@@ -30,6 +29,10 @@ export const mediaTable = pgTable("media", {
     userId: text('user_id').notNull().references(() => usersTable.id),
     type: text('type').notNull(),
     path: text('path').notNull(),
+    
+    width: integer('width').notNull().default(0),
+    height: integer('height').notNull().default(0),
+
     date: timestamp('uploaded_at', {
         withTimezone: true,
         mode: "date"
