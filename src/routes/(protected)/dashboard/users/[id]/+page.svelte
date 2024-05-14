@@ -6,6 +6,7 @@
     import * as Form from "$lib/components/ui/form";
 	import * as Select from "$lib/components/ui/select/index.js";
     import { Input } from "$lib/components/ui/input";
+	import { usersRoles } from "$lib/server/db/schema";
 
 
     export let data: PageData;
@@ -17,11 +18,6 @@
     });
 
     const { form: formData, enhance } = form;
-    const roles = [
-        "admin",
-        "teacher",
-        "student"
-    ]
 </script>
 
 <div class="container mx-auto py-10">
@@ -67,7 +63,7 @@
                         <Select.Value placeholder={$formData.role}>{$formData.role}</Select.Value>
                     </Select.Trigger>
                     <Select.Content>
-                        {#each roles as role}
+                        {#each usersRoles as role}
                             <Select.Item value={role}>{role}</Select.Item>
                         {/each}
                     </Select.Content>

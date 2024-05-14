@@ -1,3 +1,4 @@
+import { usersRoles } from "$lib/server/db/schema";
 import { z } from "zod";
 
 export const editUserSchema = z.object({
@@ -8,7 +9,7 @@ export const editUserSchema = z.object({
     firstName: z.string().min(2).max(50),
     lastName: z.string().min(2).max(50),
 
-    role: z.enum(["admin", "teacher", "student"]),
+    role: z.enum(usersRoles),
 })
 
 export const changePasswordSchema = z.object({
