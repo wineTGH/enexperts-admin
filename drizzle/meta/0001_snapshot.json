@@ -1,10 +1,8 @@
 {
-  "id": "ca00f19f-a447-4e72-9361-589f8e80cd4a",
-  "prevId": "38f9fecf-0565-4f7d-8d59-12a3e9509f4f",
-  "version": "5",
-  "dialect": "pg",
+  "version": "6",
+  "dialect": "postgresql",
   "tables": {
-    "tokens_pairs": {
+    "public.tokens_pairs": {
       "name": "tokens_pairs",
       "schema": "",
       "columns": {
@@ -59,36 +57,36 @@
         "tokens_pairs_user_id_users_id_fk": {
           "name": "tokens_pairs_user_id_users_id_fk",
           "tableFrom": "tokens_pairs",
-          "tableTo": "users",
           "columnsFrom": [
             "user_id"
           ],
+          "tableTo": "users",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "no action",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "no action"
         }
       },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {
         "tokens_pairs_access_token_unique": {
           "name": "tokens_pairs_access_token_unique",
-          "nullsNotDistinct": false,
           "columns": [
             "access_token"
-          ]
+          ],
+          "nullsNotDistinct": false
         },
         "tokens_pairs_refresh_token_unique": {
           "name": "tokens_pairs_refresh_token_unique",
-          "nullsNotDistinct": false,
           "columns": [
             "refresh_token"
-          ]
+          ],
+          "nullsNotDistinct": false
         }
       }
     },
-    "users": {
+    "public.users": {
       "name": "users",
       "schema": "",
       "columns": {
@@ -142,35 +140,38 @@
       "uniqueConstraints": {
         "users_username_unique": {
           "name": "users_username_unique",
-          "nullsNotDistinct": false,
           "columns": [
             "username"
-          ]
+          ],
+          "nullsNotDistinct": false
         },
         "users_email_unique": {
           "name": "users_email_unique",
-          "nullsNotDistinct": false,
           "columns": [
             "email"
-          ]
+          ],
+          "nullsNotDistinct": false
         }
       }
     }
   },
   "enums": {
-    "roles": {
+    "public.roles": {
       "name": "roles",
-      "values": {
-        "admin": "admin",
-        "teacher": "teacher",
-        "student": "student"
-      }
+      "schema": "public",
+      "values": [
+        "admin",
+        "teacher",
+        "student"
+      ]
     }
   },
   "schemas": {},
   "_meta": {
-    "columns": {},
     "schemas": {},
-    "tables": {}
-  }
+    "tables": {},
+    "columns": {}
+  },
+  "id": "ca00f19f-a447-4e72-9361-589f8e80cd4a",
+  "prevId": "38f9fecf-0565-4f7d-8d59-12a3e9509f4f"
 }

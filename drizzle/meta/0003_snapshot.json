@@ -1,9 +1,11 @@
 {
+  "id": "7788439b-abb6-4f93-8581-bd01df33c6bf",
+  "prevId": "c09b8179-6ad0-4ec7-bfba-6e4d81203a9e",
   "version": "6",
   "dialect": "postgresql",
   "tables": {
-    "public.refresh_tokens": {
-      "name": "refresh_tokens",
+    "public.media": {
+      "name": "media",
       "schema": "",
       "columns": {
         "id": {
@@ -12,59 +14,105 @@
           "primaryKey": true,
           "notNull": true
         },
-        "refresh_token": {
-          "name": "refresh_token",
+        "user_id": {
+          "name": "user_id",
           "type": "text",
           "primaryKey": false,
           "notNull": true
         },
-        "creation_date": {
-          "name": "creation_date",
-          "type": "timestamp",
+        "type": {
+          "name": "type",
+          "type": "text",
           "primaryKey": false,
-          "notNull": true,
-          "default": "now()"
+          "notNull": true
         },
-        "used": {
-          "name": "used",
-          "type": "boolean",
+        "path": {
+          "name": "path",
+          "type": "text",
           "primaryKey": false,
-          "notNull": false,
-          "default": false
+          "notNull": true
         },
-        "user_id": {
-          "name": "user_id",
+        "width": {
+          "name": "width",
           "type": "integer",
           "primaryKey": false,
-          "notNull": false
+          "notNull": true,
+          "default": 0
+        },
+        "height": {
+          "name": "height",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 0
+        },
+        "uploaded_at": {
+          "name": "uploaded_at",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": true
         }
       },
       "indexes": {},
       "foreignKeys": {
-        "refresh_tokens_user_id_users_id_fk": {
-          "name": "refresh_tokens_user_id_users_id_fk",
-          "tableFrom": "refresh_tokens",
+        "media_user_id_users_id_fk": {
+          "name": "media_user_id_users_id_fk",
+          "tableFrom": "media",
+          "tableTo": "users",
           "columnsFrom": [
             "user_id"
           ],
-          "tableTo": "users",
           "columnsTo": [
             "id"
           ],
-          "onUpdate": "no action",
-          "onDelete": "no action"
+          "onDelete": "no action",
+          "onUpdate": "no action"
         }
       },
       "compositePrimaryKeys": {},
-      "uniqueConstraints": {
-        "refresh_tokens_refresh_token_unique": {
-          "name": "refresh_tokens_refresh_token_unique",
-          "columns": [
-            "refresh_token"
-          ],
-          "nullsNotDistinct": false
+      "uniqueConstraints": {}
+    },
+    "public.sessions": {
+      "name": "sessions",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "expires_at": {
+          "name": "expires_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true
         }
-      }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "sessions_user_id_users_id_fk": {
+          "name": "sessions_user_id_users_id_fk",
+          "tableFrom": "sessions",
+          "tableTo": "users",
+          "columnsFrom": [
+            "user_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
     },
     "public.users": {
       "name": "users",
@@ -72,7 +120,7 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "serial",
+          "type": "text",
           "primaryKey": true,
           "notNull": true
         },
@@ -103,6 +151,7 @@
         "roles": {
           "name": "roles",
           "type": "roles",
+          "typeSchema": "public",
           "primaryKey": false,
           "notNull": true,
           "default": "'student'"
@@ -120,38 +169,26 @@
       "uniqueConstraints": {
         "users_username_unique": {
           "name": "users_username_unique",
+          "nullsNotDistinct": false,
           "columns": [
             "username"
-          ],
-          "nullsNotDistinct": false
+          ]
         },
         "users_email_unique": {
           "name": "users_email_unique",
+          "nullsNotDistinct": false,
           "columns": [
             "email"
-          ],
-          "nullsNotDistinct": false
+          ]
         }
       }
     }
   },
-  "enums": {
-    "public.roles": {
-      "name": "roles",
-      "schema": "public",
-      "values": [
-        "admin",
-        "teacher",
-        "student"
-      ]
-    }
-  },
+  "enums": {},
   "schemas": {},
   "_meta": {
+    "columns": {},
     "schemas": {},
-    "tables": {},
-    "columns": {}
-  },
-  "id": "c09b8179-6ad0-4ec7-bfba-6e4d81203a9e",
-  "prevId": "ca00f19f-a447-4e72-9361-589f8e80cd4a"
+    "tables": {}
+  }
 }

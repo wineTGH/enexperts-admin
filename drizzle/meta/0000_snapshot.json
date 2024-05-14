@@ -1,10 +1,8 @@
 {
-  "id": "38f9fecf-0565-4f7d-8d59-12a3e9509f4f",
-  "prevId": "00000000-0000-0000-0000-000000000000",
-  "version": "5",
-  "dialect": "pg",
+  "version": "6",
+  "dialect": "postgresql",
   "tables": {
-    "tokens_pairs": {
+    "public.tokens_pairs": {
       "name": "tokens_pairs",
       "schema": "",
       "columns": {
@@ -54,21 +52,21 @@
       "uniqueConstraints": {
         "tokens_pairs_access_token_unique": {
           "name": "tokens_pairs_access_token_unique",
-          "nullsNotDistinct": false,
           "columns": [
             "access_token"
-          ]
+          ],
+          "nullsNotDistinct": false
         },
         "tokens_pairs_refresh_token_unique": {
           "name": "tokens_pairs_refresh_token_unique",
-          "nullsNotDistinct": false,
           "columns": [
             "refresh_token"
-          ]
+          ],
+          "nullsNotDistinct": false
         }
       }
     },
-    "users": {
+    "public.users": {
       "name": "users",
       "schema": "",
       "columns": {
@@ -120,15 +118,15 @@
         "users_tokens_pair_id_tokens_pairs_id_fk": {
           "name": "users_tokens_pair_id_tokens_pairs_id_fk",
           "tableFrom": "users",
-          "tableTo": "tokens_pairs",
           "columnsFrom": [
             "tokens_pair_id"
           ],
+          "tableTo": "tokens_pairs",
           "columnsTo": [
             "id"
           ],
-          "onDelete": "no action",
-          "onUpdate": "no action"
+          "onUpdate": "no action",
+          "onDelete": "no action"
         }
       },
       "compositePrimaryKeys": {},
@@ -136,19 +134,22 @@
     }
   },
   "enums": {
-    "roles": {
+    "public.roles": {
       "name": "roles",
-      "values": {
-        "admin": "admin",
-        "teacher": "teacher",
-        "student": "student"
-      }
+      "schema": "public",
+      "values": [
+        "admin",
+        "teacher",
+        "student"
+      ]
     }
   },
   "schemas": {},
   "_meta": {
-    "columns": {},
     "schemas": {},
-    "tables": {}
-  }
+    "tables": {},
+    "columns": {}
+  },
+  "id": "38f9fecf-0565-4f7d-8d59-12a3e9509f4f",
+  "prevId": "00000000-0000-0000-0000-000000000000"
 }
